@@ -28,22 +28,22 @@ public class SecurityConfig {
 
         //form메서드를 호출하여 form 로그인을 호출한다.
         http.csrf(c->c.disable()
-                ).formLogin(formLogin -> formLogin
-                    .loginPage("/loginForm") //기본적으로 SpringSecurity가 /login 이라는 url을 제공하는데 이것을 커스터마이징할수있도록함
-                    .loginProcessingUrl("/login") //사용자가 로그인 폼을 제출할때 url로 요청이 전송되며, Spring Security가 낚아채서 인증진행
-                    .defaultSuccessUrl("/home")//인증이 성공한후 리디렉션을 할 url을 지정할수있다
-                    .failureHandler(loginExceptionHandler())//로그인 실패시 처리하는 핸들러
-                    .permitAll()
-                ).authorizeHttpRequests(request -> request.requestMatchers("/user/**").authenticated() //user로 들어왔을때 접근가능
-                    .requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") //관리자는 관리자 역할을 부여받은 사람만 접근가능
-                    .anyRequest().permitAll()
-                ).userDetailsService(principalDetailsService);
+        ).formLogin(formLogin -> formLogin
+                .loginPage("/loginForm") //기본적으로 SpringSecurity가 /login 이라는 url을 제공하는데 이것을 커스터마이징할수있도록함
+                .loginProcessingUrl("/login") //사용자가 로그인 폼을 제출할때 url로 요청이 전송되며, Spring Security가 낚아채서 인증진행
+                .defaultSuccessUrl("/home")//인증이 성공한후 리디렉션을 할 url을 지정할수있다
+                .failureHandler(loginExceptionHandler())//로그인 실패시 처리하는 핸들러
+                .permitAll()
+        ).authorizeHttpRequests(request -> request.requestMatchers("/user/**").authenticated() //user로 들어왔을때 접근가능
+                .requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") //관리자는 관리자 역할을 부여받은 사람만 접근가능
+                .anyRequest().permitAll()
+        ).userDetailsService(principalDetailsService);
 
         //OAuth2.0으로 구글 로그인 진행
         http.oauth2Login(oauth2Login -> oauth2Login
                 .loginPage("/loginForm")
                 .userInfoEndpoint(userInfo -> userInfo
-                .userService(principalOauth2UserService)));
+                        .userService(principalOauth2UserService)));
 
         return http.build();
     }
