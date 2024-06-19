@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity //모든 요청 URL이 스프링 시큐리티를 제어받도록 만드는 어노테이션으로 내부적으로 SecurityFilterChain이 동작한다.
@@ -20,6 +21,7 @@ public class SecurityConfig {
 
     private PrincipalDetailsService principalDetailsService;
     private PrincipalOauth2UserService principalOauth2UserService;
+    //private final AccessDeniedHandler authenticationAccessDeniedHandler;
 
     //SecurityFilterChain을 통해서 스프링시큐리티 필터를 관리할수 있다.
     //HttpSecurity : Spring Security의 각종 설정시 사용한다 , 리소스(url)접근 권한을 설정한다.
@@ -38,6 +40,9 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") //관리자는 관리자 역할을 부여받은 사람만 접근가능
                 .anyRequest().permitAll()
         ).userDetailsService(principalDetailsService);
+
+        //인가 예외 핸들러 지정
+        //http.exceptionHandling(e-> e.accessDeniedHandler(authenticationAccessDeniedHandler));
 
         //OAuth2.0으로 구글 로그인 진행
         http.oauth2Login(oauth2Login -> oauth2Login

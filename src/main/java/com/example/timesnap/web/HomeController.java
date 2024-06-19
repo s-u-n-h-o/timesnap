@@ -24,7 +24,7 @@ public class HomeController {
     public String index() {return "index";}
 
     @GetMapping("/login")
-    public String loginForm() {log.info("로그인했는데 여기로옴");return "loginForm";}
+    public String loginForm() {return "loginForm";}
 
     @GetMapping("/join")
     public String joinForm(){return "joinForm";}

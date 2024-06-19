@@ -43,7 +43,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .email(oauth2User.getAttribute("email"))
                     .nickname(oauth2User.getAttribute("given_name"))
                     .isHidden(true)
-                    .role("ROLE_USER")
+                    //.role("ROLE_USER")
                     .build();
             userRepository.save(user);
             log.info("회원가입 완료");

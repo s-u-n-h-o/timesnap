@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Getter
@@ -34,7 +33,20 @@ public final class User {
     private Boolean isHidden;
 
     private String role;
+
     public User() {
 
     }
+
+//    @Builder
+//    public User(Long id, String username, String password, String email, String nickname, boolean isHidden
+//                ,String role) {
+//        this.id=id;
+//        this.username = username;
+//        this.password = password;
+//        this.email = email;
+//        this.nickname = nickname;
+//        this.isHidden = isHidden;
+//        this.role = role;
+//    }
 }

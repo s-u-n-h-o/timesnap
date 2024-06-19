@@ -44,7 +44,6 @@ public class PrincipalDetails implements UserDetails ,OAuth2User { //시큐리�
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                log.info("권한 가져오기 : {}" , user.getRole());
                 return user.getRole();
             }
         });

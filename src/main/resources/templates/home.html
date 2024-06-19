@@ -1,11 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-7/assets/css/login-7.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-로그인 성공후 홈화면입니다.
+
+<!--헤더쪽-->
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-6" style="height: 400px; background-color: skyblue">
+            <div class="col-lg-6 mx-auto flex-container" style="background-color: #1a738f">
+                <img class="homeImage" src="../assets/img/bg-home.jpg" style="height: 400px;">
+                <div class="vertical-align">
+                    <h1 class="fw-light">TimeSnap</h1>
+                    <button type="button" class="btn btn-primary">그룹생성</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card" style="background-color: lightskyblue;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title1</h5>
+                        <a href="#" class="btn btn-primary">입장하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card" style="background-color: hotpink;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title2</h5>
+                        <a href="#" class="btn btn-primary">입장하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card" style="background-color: lightgreen;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title3</h5>
+                        <a href="#" class="btn btn-primary">입장하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
+
+<script th:inline="javascript">
+    function homeAlert() {
+        alert("홈화면 왔어요");
+    }
+    window.onload = homeAlert();
+</script>
