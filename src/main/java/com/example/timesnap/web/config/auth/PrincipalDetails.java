@@ -1,7 +1,9 @@
 package com.example.timesnap.web.config.auth;
 
 import com.example.timesnap.domain.user.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,20 +13,23 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 
 
 @Slf4j
 @Data
 @RequiredArgsConstructor
-public class PrincipalDetails implements UserDetails ,OAuth2User { //시큐리티 세션에는 Authentication 타입의 객체만 사용이 가능하기 때문에 두가지 버전의 로그인을 사용하기위해서 상속을 받는다
+public class PrincipalDetails implements UserDetails ,OAuth2User {//시큐리티 세션에는 Authentication 타입의 객체만 사용이 가능하기 때문에 두가지 버전의 로그인을 사용하기위해서 상속을 받는다
 
     private final User user;
     private Map<String, Object> attributes;
 
     public PrincipalDetails(User user, Map<String, Object> attributes) {
         this.user = user;
-        this.attributes =attributes;
+        this.attributes = attributes;
+    }
+
+    public Long getId(){
+        return user.getId();
     }
 
     @Override

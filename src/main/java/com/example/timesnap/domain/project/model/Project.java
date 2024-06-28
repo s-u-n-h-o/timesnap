@@ -25,6 +25,11 @@ public final class Project {
     private Long userid;
 
     /**
+     * 그룹 명
+     */
+    private String projectTitle;
+
+    /**
      * 그룹 소개글
      */
     private String projectcontent;

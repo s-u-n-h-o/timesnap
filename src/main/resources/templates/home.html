@@ -20,38 +20,18 @@
                 <img class="homeImage" src="../assets/img/bg-home.jpg" style="height: 400px;">
                 <div class="vertical-align">
                     <h1 class="fw-light">TimeSnap</h1>
-                    <button type="button" class="btn btn-primary">그룹생성</button>
+                    <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/project/groupForm}'|">그룹생성</button>
                 </div>
             </div>
         </div>
     </section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div th:each="project : ${projectList}" th:if="${project != null}" class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card" style="background-color: lightskyblue;">
-                    <img src="..." class="card-img-top" alt="...">
+<!--                    <img th:src="${project.imageUrl}" class="card-img-top" alt="Project Image">-->
                     <div class="card-body">
-                        <h5 class="card-title">Card title1</h5>
-                        <a href="#" class="btn btn-primary">입장하기</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card" style="background-color: hotpink;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title2</h5>
-                        <a href="#" class="btn btn-primary">입장하기</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card" style="background-color: lightgreen;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title3</h5>
+                        <h5 class="card-title" th:text="${project.projectTitle}">Card title</h5>
                         <a href="#" class="btn btn-primary">입장하기</a>
                     </div>
                 </div>
@@ -63,8 +43,12 @@
 </html>
 
 <script th:inline="javascript">
-    function homeAlert() {
-        alert("홈화면 왔어요");
+    function home() {
+        const Http = new XMLHttpRequest();
+        const url = "/project/list";
+
+        Http.open('GET', url);
+        Http.send();
     }
-    window.onload = homeAlert();
+    window.onload = home;
 </script>
